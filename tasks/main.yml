@@ -1,0 +1,24 @@
+---
+- name: Node Exporter
+  docker_container:
+    name: "{{ CONTAINER_NAME }}"
+    image: "{{ IMAGE }}:{{ BUILD }}"
+    command: --path.rootfs=/host
+    pid_mode: host
+    pull: "yes"
+    recreate: "yes"
+    cpu_period: "{{ DOCKER_CPU_PERIOD | default(omit) }}"
+    cpu_quota: "{{ DOCKER_CPU_QUOTA | default(omit) }}"
+    memory: "{{ DOCKER_MEMORY | default(omit) }}"
+    shm_size: "{{ DOCKER_SHM_SIZE | default(omit) }}"
+    state: "{{ CONTAINER_STATE }}"
+    restart_policy: "unless-stopped"
+    network_mode: "{{ DOCKER_NETWORK_MODE | default(omit) }}"
+    published_ports: "{{ DOCKER_PUBLISHED_PORTS | default(omit) }}"
+    exposed_ports: "{{ DOCKER_EXPOSED_PORTS | default(omit) }}"
+    volumes:
+      - /:/host:ro,rslave
+    log_driver: "{{ DOCKER_LOG_DRIVER }}"
+    log_options: "{{ DOCKER_LOG_OPTIONS }}"
+  tags:
+  - asbrl-node-exporter

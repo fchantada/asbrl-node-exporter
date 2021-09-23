@@ -1,0 +1,18 @@
+---
+- name: Deploy
+  hosts: localhost
+  order: sorted
+  become: true
+
+  pre_tasks:
+
+  - name: copy role locally (DEBUG)
+    copy:
+      src: ../
+      dest: ./roles/asbrl-node-exporter
+  
+  tasks:
+
+  - name: Deploy Linux Node Exporter
+    include_role:
+      name: asbrl-node-exporter

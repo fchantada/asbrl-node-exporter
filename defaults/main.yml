@@ -1,0 +1,8 @@
+---
+CONTAINER_NAME: 'node-exporter'
+DOCKER_NETWORK_MODE: 'host'
+CONTAINER_STATE: 'started'
+IMAGE: 'prom/node-exporter'
+BUILD: 'v1.2.2'
+DOCKER_LOG_DRIVER: "json-file"
+DOCKER_LOG_OPTIONS: '{"max-size":"64m","max-file": "3"}'
